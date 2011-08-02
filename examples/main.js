@@ -1,12 +1,10 @@
-var RedisQ = require('../lib/redisq').RedisQ,
+var RedisQ = require('../lib/redisq'),
     redis = require('redis'),
     client = redis.createClient(6379, '127.0.0.1');
 
 RedisQ.init(6379, '127.0.0.1');
 
-var queue = new RedisQ({
-    pattern: "queue:*"
-});
+var queue = new RedisQ('queue:*');
 queue.start();
 
 queue.subscribe('a', function(message)
